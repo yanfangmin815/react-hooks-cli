@@ -20,7 +20,7 @@ const apiGitHubReposUrl = 'https://api.github.com/';
 //     orgs: 'lxy-cli', //默认拉取的组织名
 //     users: 'lixiaoyanlee'
 // }
-console.log(configFile, downloadDirectory, 'downloadDirectory')
+// console.log(configFile, downloadDirectory, 'downloadDirectory')
 const defaultConfig = {
     k: 'users',
     v: 'yanfangmin815'
