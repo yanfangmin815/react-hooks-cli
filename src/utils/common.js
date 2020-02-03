@@ -177,7 +177,12 @@ const copyTempToLoclhost = async (target, projectName) => {
             // console.log(chalk.blue('非复杂项目', path.join(target, 'ask.js')))
             // console.log(target, resolvePath, 'resolvePath')
             await ncp(target, resolvePath);  
-
+            nquirer.prompt([{
+                type: promptObj.type,
+                name: 'repo',
+                message: promptObj.message,
+                choices: repos // 返回的repos信息
+            }])
         }else{
              //复杂项目
              // 1) 让用户填信息
