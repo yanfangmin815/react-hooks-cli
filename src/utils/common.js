@@ -52,7 +52,7 @@ const mapActions = {
 const mapRepoInfo = {
     repos: {
         mess: {
-            start: '正在链接你的组织...',
+            start: '正在拉取项目...',
             fail: '链接组织的仓库列表为空...\n'
         },
         promptObj: {
@@ -176,6 +176,7 @@ const copyTempToLoclhost = async (target, projectName) => {
             // console.log(chalk.blue('非复杂项目', path.join(target, 'ask.js')))
             // console.log(target, resolvePath, 'resolvePath')
             await ncp(target, resolvePath);  
+            fse.remove(target);
             console.log('\nTo get started:');
             console.log(chalk.yellow('\n cd ' + projectName));
             console.log(chalk.yellow('\n npm i'));
@@ -188,6 +189,7 @@ const copyTempToLoclhost = async (target, projectName) => {
                      .destination(resolvePath) // 最终编译好的文件存放位置
                      .use(async (files, metal, done) => {
                          let args = require(path.join(target, 'ask.js'));
+                        //  console.log(args, 'ARGS')
                          let res = await inquirer.prompt(args);
                          let met = metal.metadata();
                          // 将询问的结果放到metadata中保证在下一个中间件中可以获取到
@@ -211,8 +213,8 @@ const copyTempToLoclhost = async (target, projectName) => {
                              }
                          })
                          done();
-                         console.log(chalk.blue('复杂项目', path.join(target, 'ask.js')))
-                         console.log('复杂项目', __dirname, target, resolvePath, 'resolvePath')
+                        //  console.log(chalk.blue('复杂项目', path.join(target, 'ask.js')))
+                        //  console.log('复杂项目', __dirname, target, resolvePath, 'resolvePath')
                      })
                      .build((err) => {
                          
@@ -226,7 +228,14 @@ const copyTempToLoclhost = async (target, projectName) => {
                          }
                      })
 
-             });
+             }).then((data)=>{
+
+            },(err)=>{
+                console.log(err+'自己的err') //走自己的（输出：Error: 错误自己的err）
+                throw Error('错误自己抛出的')
+            }).catch(e => {
+                console.log(e + 'err') //输出：Error: 错误自己抛出的公共的err
+            });
 
         }
 }

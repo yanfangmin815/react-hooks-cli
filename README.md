@@ -39,10 +39,17 @@ yfm-cli config set orgs lxy-cli
 + consolidate ：统一模板引擎
 
 
-### 打包发布到npm
+### 使用方法
 ```
   npm unlink
   npm i yfm-cli -g
+```
+
+
+### 打包发布到npm
+```
+  npm login
+  npm publish
 ```
 
 ### 需注意
