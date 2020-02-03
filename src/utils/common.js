@@ -173,12 +173,12 @@ const copyTempToLoclhost = async (target, projectName) => {
         const resolvePath = path.join(path.resolve(), projectName);
         // 此处模拟如果仓库中有ask.js就表示是复杂的仓库项目
         if (!fs.existsSync(path.join(target, 'ask.js'))) {
-            // console.log(chalk.blue('非复杂项目', path.join(target, 'ask.js')))
-            // console.log(target, resolvePath, 'resolvePath')
+            console.log(chalk.blue('非复杂项目', path.join(target, 'ask.js')))
+            console.log(target, resolvePath, 'resolvePath')
             await ncp(target, resolvePath);  
             console.log('\nTo get started:');
-            console.log('\n cd \Users\yfm\myTemplate');
-            console.log('\n npm i');
+            console.log(chalk.yellow('\n cd \\Users\\yfm\\myTemplate'));
+            console.log(chalk.yellow('\n npm i'));
         }else{
              //复杂项目
              // 1) 让用户填信息
