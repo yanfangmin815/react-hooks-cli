@@ -54,7 +54,6 @@ const mapRepoInfo = {
         mess: {
             start: '正在链接你的组织...',
             fail: '链接组织的仓库列表为空...\n'
-
         },
         promptObj: {
             type: 'list',
@@ -97,7 +96,7 @@ const fetchReopLists = async () => {
 
  // 封装loading效果
  const fnLoadingByOra = (fn, message) => async (...argv) => {
-    console.log(...argv, '...argv')
+    // console.log(...argv, '...argv')
     const spinner = ora(message);
     spinner.start();
     let result = await fn(...argv);
@@ -177,12 +176,9 @@ const copyTempToLoclhost = async (target, projectName) => {
             // console.log(chalk.blue('非复杂项目', path.join(target, 'ask.js')))
             // console.log(target, resolvePath, 'resolvePath')
             await ncp(target, resolvePath);  
-            nquirer.prompt([{
-                type: promptObj.type,
-                name: 'repo',
-                message: promptObj.message,
-                choices: repos // 返回的repos信息
-            }])
+            console.log('\nTo get started:');
+            console.log('\n cd \Users\yfm\myTemplate');
+            console.log('\n npm i');
         }else{
              //复杂项目
              // 1) 让用户填信息

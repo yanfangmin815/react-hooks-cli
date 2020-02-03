@@ -51,7 +51,7 @@ module.exports =  async (projectName) => {
     // }
 
 
-    // 下载项目到临时文件夹 \Users\yfm\.myTemplate macos
+    // 下载项目到临时文件夹 \Users\yfm\myTemplate macos
     const {dest,filePath} = await fnLoadingByOra(downDir, '下载项目中...')(repo);
     // const {dest,filePath} = await fnLoadingByOra(downDir, '下载项目中...')(repo, tag);
     copyTempToLoclhost(filePath, projectName);

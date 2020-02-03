@@ -1,6 +1,6 @@
 {
   "name": "yfm-cli",
-  "version": "1.8.0",
+  "version": "1.9.0",
   "description": "创建一个自己的前端脚手架工具",
   "main": "index.js",
   "scripts": {
@@ -13,7 +13,7 @@
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/lixiaoyanlee/lee-cli/issues"
+    "url": "https://github.com/yanfangmin815/react-hooks-cli/issues"
   },
   "devDependencies": {
     "eslint": "^6.8.0",
