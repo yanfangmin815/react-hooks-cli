@@ -1,18 +1,18 @@
 ## 创建自己的脚手架工具
 
-_因为本项目工具还在完善中，所以还不能通过 `npm install lee-cli`命令安装，后续发布到npm上可以实现_
+_本工具已发布到npm上可以实现_
 
 ### 预计实现的功能
 +  实现可以在命令行中直接运行代码 
-+ 实现可以用npm安装 npm install `lee-cli -g`
-+ 根据模板初始化项目 `lee-cli create project-name`
-+ 模板库代码拉取初始化配置文件 `lee-cli config set repo repo-name`
++ 实现可以用npm安装 npm install `yfm-cli -g`
++ 根据模板初始化项目 `yfm-clicreate project-name`
++ 模板库代码拉取初始化配置文件 `yfm-cli config set repo repo-name`
 
 
 ### 本项目工具cli已经实现
 
 ```
- lee-cli create <projectName>
+ yfm-cli create <projectName>
 ```
 create可以生成一个项目，会询问提示是否下载默认的地址项目，还可以通过config配置:
 
@@ -20,10 +20,10 @@ create可以生成一个项目，会询问提示是否下载默认的地址项�
 #### config命令已经配置
 
 ```
-lee-cli config set <k> <v>
+yfm-cli config set <k> <v>
 ```
 举例：
-lee-cli config set orgs lxy-cli
+yfm-cli config set orgs lxy-cli
 
 
 ### 本项目中需要很多的模块
@@ -42,11 +42,10 @@ lee-cli config set orgs lxy-cli
 ### 打包发布到npm
 ```
   npm unlink
-  lee-cli
-  npm i lee-cli -g
+  npm i yfm-cli -g
 ```
 
 ### 需注意
 
-本代码中是针对自己的https://api.github.com/orgs/lxy-cli/repos的组织写的自定义的脚手架，参考价值是代码的思路分析，可将里边的链接地址更换为自己的，如果是简单的项目拷贝只需要更改链接地址，如果是负责的项目需要定制的话可以根据自己的逻辑修改，本项目中的src/utils/common.js 中的方法 copyTempToLoclhost 里边的复杂方法也是针对自己的项目编写的。
-当然在一直优化中。。。。
+本代码中是针对自己的https://api.github.com/users/yanfangmin815/repos的组织写的自定义的脚手架，参考价值是代码的思路分析，可将里边的链接地址更换为自己的，如果是简单的项目拷贝只需要更改链接地址，如果是负责的项目需要定制的话可以根据自己的逻辑修改，本项目中的src/utils/common.js 中的方法 copyTempToLoclhost 里边的复杂方法也是针对自己的项目编写的。
+一直在优化中。。。。
