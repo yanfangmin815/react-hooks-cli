@@ -179,7 +179,7 @@ const copyTempToLoclhost = async (target, projectName) => {
             fse.remove(target);
             console.log('\nTo get started:');
             console.log(chalk.yellow('\n cd ' + projectName));
-            console.log(chalk.yellow('\n npm i'));
+            console.log(chalk.yellow('\n npm install'));
         }else{
              //复杂项目
              // 1) 让用户填信息
