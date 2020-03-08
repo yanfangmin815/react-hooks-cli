@@ -36,8 +36,8 @@ module.exports =  async (projectName) => {
     //     console.log(answers)
     //   });
     if (!defaultRepo) {
-        console.log(`您还可以通过config命令lee-cli config set <k> <v>来设置选择你要gitHub地址上下载项目，具体案例如下：\n`);
-        console.log(`执行${chalk.green('lee-cli config set org lxy-cli')}`);
+        console.log(`您还可以通过config命令yfm-cli config set <k> <v>来设置选择你要gitHub地址上下载项目，具体案例如下：\n`);
+        console.log(`执行${chalk.green('yfm-cli config set org lxy-cli')}`);
         return;
     }
    const repo = await getChoiceContent(fetchReopLists, mapRepoInfo.repos.mess, mapRepoInfo.repos.promptObj);

@@ -31,15 +31,15 @@ const mapActions = {
         alias: 'c', //别名
         description: '创建一个项目', // 描述
         examples: [ //用法
-            'lee-cli create <project-name>'
+            'yfm-cli create <project-name>'
         ]
     },
     config: { //配置文件
         alias: 'conf', //别名
         description: 'config project variable', // 描述
         examples: [ //用法
-            'lee-cli config set <k> <v>',
-            'lee-cli config get <k>'
+            'yfm-cli config set <k> <v>',
+            'yfm-cli config get <k>'
         ]
     },
     '*': {
@@ -151,7 +151,6 @@ const getChoiceContent = async (fn, mess, promptObj,...args) => {
 // 将项目下载到当前用户的临时文件夹下 
 const downDir = async (repo)=>{
    let project = `${repoUrlObj.v}/${repo}`; //下载的项目
-    //  C:\Users\lee\.myTempalte
    let dest = `${downloadDirectory}/${repo}`; //把项目下载当对应的目录中
    let filePath = '';
     //    if(tag){ // 如果需要区分版本号

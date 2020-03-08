@@ -1,6 +1,6 @@
 {
   "name": "yfm-cli",
-  "version": "2.5.0",
+  "version": "2.6.0",
   "description": "创建一个自己的前端脚手架工具",
   "main": "index.js",
   "scripts": {

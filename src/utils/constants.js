@@ -16,10 +16,6 @@ const configFile = `${MY_PLATFORM_ENV}\\.lxyrc`;
 const apiGitHubReposUrl = 'https://api.github.com/';
 // const defaultGitHubReposUrl = ;
 // 配置文件不存在时，默认提供的值
-// const defaultConfig = {
-//     orgs: 'lxy-cli', //默认拉取的组织名
-//     users: 'lixiaoyanlee'
-// }
 // console.log(configFile, downloadDirectory, 'downloadDirectory')
 const defaultConfig = {
     k: 'users',

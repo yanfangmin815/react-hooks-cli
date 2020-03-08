@@ -5,8 +5,8 @@
 /***、
  * 主要功能是：配置文件的读写操作，如果配置文件不再，需要提供默认的值
  * 本项目实现了 可以配置调用gitHub上哪个组织或者用户来下载
- *'lee-cli config set <k> <v>',
- 'lee-cli config get <k>'
+ *'yfm-cli config set <k> <v>',
+ 'yfm-cli config get <k>'
  */
 
 const program = require('commander');
@@ -36,7 +36,7 @@ module.exports = (action,k,v) => {
     if (flag) {
       console.log(obj.v || defaultConfig.v);
     }else{
-      console.log(`没有此项，您可能是想输入为 ${chalk.green('lee-cli config get <k>')}命令，\n比如:  ${chalk.green('lee-cli config get org')}`);
+      console.log(`没有此项，您可能是想输入为 ${chalk.green('yfm-cli config get <k>')}命令，\n比如:  ${chalk.green('yfm-cli config get org')}`);
     }   
   } else if(action === 'set'){
     if( k || v){
@@ -44,7 +44,7 @@ module.exports = (action,k,v) => {
       obj.v = v;
       fs.writeFileSync(configFile, encode(obj));
     }else{
-      console.log(`没有此项，您可能是想输入为 ${chalk.green('lee-cli config set <k> <v></v>')}命令，\n比如:  ${chalk.green('lee-cli config set org lxy-cli')}`);
+      console.log(`没有此项，您可能是想输入为 ${chalk.green('yfm-cli config set <k> <v></v>')}命令，\n比如:  ${chalk.green('yfm-cli config set org lxy-cli')}`);
     }
  
   }else if(action ==='getVal'){
