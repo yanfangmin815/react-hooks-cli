@@ -54,4 +54,6 @@ yfm-cli config set orgs lxy-cli
 
 ```
   本目录下，执行npm link，将yfm-cli连接到全局
+  部分macOS上会报错，解决原因：
+    - 切换node版本尝试解决
 ```

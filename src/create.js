@@ -25,6 +25,15 @@ module.exports =  async (projectName) => {
         return;
     } 
    
+    let { defaultRepoes } = await inquirer.prompt([{
+        type: 'list',
+        name: 'defaultRepo',
+        message: '请选择一个项目?\n ',
+        choices: [ "Choice A", 'choice C', "choice B" ],
+        default: true
+    }])
+
+   return
    let { defaultRepo } = await inquirer.prompt([{
         type: 'confirm',
         name: 'defaultRepo',
