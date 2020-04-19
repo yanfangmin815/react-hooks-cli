@@ -4,7 +4,10 @@
 // author: yfm
 
 
+
 const inquirer = require('inquirer');
+const ora = require('ora');
+const MetalSmith = require('metalsmith');
 const {
     fnLoadingByOra,
     fetchReopLists,
@@ -24,26 +27,14 @@ module.exports =  async (projectName) => {
         program.help();
         return;
     } 
-   
-    let { defaultRepoes } = await inquirer.prompt([{
-        type: 'list',
-        name: 'defaultRepo',
-        message: '请选择一个项目?\n ',
-        choices: [ "Choice A", 'choice C', "choice B" ],
-        default: true
-    }])
 
-   return
+    //    return
    let { defaultRepo } = await inquirer.prompt([{
         type: 'confirm',
         name: 'defaultRepo',
-        message: '你是否下载默认地址项目?\n ',
+        message: '你是否下载默认地址项目? ',
         default: true
     }])
-    // .then((answers) => {  yes回调
-    //     console.log('结果为:')
-    //     console.log(answers)
-    //   });
     if (!defaultRepo) {
         console.log(`您还可以通过config命令yfm-cli config set <k> <v>来设置选择你要gitHub地址上下载项目，具体案例如下：\n`);
         console.log(`执行${chalk.green('yfm-cli config set org lxy-cli')}`);

@@ -24,6 +24,7 @@ const inquirer = require('inquirer');
 
 const config = require('../config');
 const repoUrlObj = config('getVal');
+const { exec } = require('child_process')
 
 // 根据我们想要实现的功能配置执行动作，遍历产生对应的命令
 const mapActions = {
@@ -96,7 +97,6 @@ const fetchReopLists = async () => {
 
  // 封装loading效果
  const fnLoadingByOra = (fn, message) => async (...argv) => {
-    // console.log(...argv, '...argv')
     const spinner = ora(message);
     spinner.start();
     let result = await fn(...argv);
@@ -128,14 +128,14 @@ const getTagLists =  async (repo) =>{
 }
 
 
-const getChoiceContent = async (fn, mess, promptObj,...args) => {
+const getChoiceContent = async (fn, mess, promptObj, ...args) => {
      let repos = await fnLoadingByOra(fn, mess.start)(...args);
      if (Array.isArray(repos) && repos.length > 0) {
-        repos = repos.map((item) => item.name);
-     } else {
+        repos = repos.map((item) => item.name)
+    } else {
          return;
      }
-   
+     repos = repos && repos.filter((repo,index) => repo === 'react-hooks' || repo === 'react-webpack4')
      // 使用inquirer 在命令行中可以交互
      const {
          repo
@@ -173,7 +173,6 @@ const copyTempToLoclhost = async (target, projectName) => {
         // 此处模拟如果仓库中有ask.js就表示是复杂的仓库项目
         if (!fs.existsSync(path.join(target, 'ask.js'))) {
             // console.log(chalk.blue('非复杂项目', path.join(target, 'ask.js')))
-            // console.log(target, resolvePath, 'resolvePath')
             await ncp(target, resolvePath);  
             fse.remove(target);
             console.log('\nTo get started:');
@@ -188,9 +187,9 @@ const copyTempToLoclhost = async (target, projectName) => {
                      .destination(resolvePath) // 最终编译好的文件存放位置
                      .use(async (files, metal, done) => {
                          let args = require(path.join(target, 'ask.js'));
-                        //  console.log(args, 'ARGS')
                          let res = await inquirer.prompt(args);
                          let met = metal.metadata();
+                        //  console.log(__dirname, met, res, 'ARGS')
                          // 将询问的结果放到metadata中保证在下一个中间件中可以获取到
                          Object.assign(met, res);
                         //  ask.js 只是用于 判断是否是复杂项目 且 内容可以定制复制到本地不需要
@@ -206,29 +205,46 @@ const copyTempToLoclhost = async (target, projectName) => {
                                  let content = files[file].contents.toString(); //文件内容
                                 //  我们将ejs模板引擎的内容找到 才编译
                                  if (content.includes('<%')) {
-                                     content = await render(content, res);
-                                     files[file].contents = Buffer.from(content); //渲染
+                                    content = await render(content, res);
+                                    files[file].contents = Buffer.from(content); //渲染
                                  }
                              }
                          })
-                         done();
-                        //  console.log(chalk.blue('复杂项目', path.join(target, 'ask.js')))
+                         done()
                         //  console.log('复杂项目', __dirname, target, resolvePath, 'resolvePath')
                      })
                      .build((err) => {
-                         
                          if (err) {
                              console.log(chalk.red('项目生成失败', err));
                              reject();
 
                          } else {
                              console.log(chalk.blue('项目生成成功'));
-                             resolve();
+                             resolve(resolvePath);
                          }
                      })
 
              }).then((data)=>{
-
+                let { result } = inquirer.prompt([{
+                    type: 'confirm',
+                    name: 'result',
+                    message: '是否执行自动安装modules? /n',
+                    default: true
+                }]).then((answers) => {  yes回调
+                    console.log('结果为:')
+                    console.log(answers)
+                  });
+                if (result) {
+                    exec(`cd ${resolvePath} && npm i`, function() {
+                        console.log('\nTo get started:');
+                        console.log(chalk.yellow('\n cd ' + projectName));
+                        console.log(chalk.yellow('\n npm start '));
+                    })
+                } else {
+                    console.log('\nTo get started:');
+                    console.log(chalk.yellow('\n cd ' + projectName));
+                    console.log(chalk.yellow('\n npm install'));
+                }
             },(err)=>{
                 console.log(err+'自己的err') //走自己的（输出：Error: 错误自己的err）
                 throw Error('错误自己抛出的')

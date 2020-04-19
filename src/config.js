@@ -24,7 +24,6 @@ module.exports = (action,k,v) => {
     return;
   }
   const haveConfigFile = fs.existsSync(configFile); //配置文件是否存在
-  // console.log(configFile, haveConfigFile, 'haveConfigFile')
   const obj = {};
   if (haveConfigFile) {
     const content = fs.readFileSync(configFile,'utf-8');
@@ -52,7 +51,6 @@ module.exports = (action,k,v) => {
     if(obj && Object.keys(obj).length>0){
       c = Object.assign({}, obj);
     }else{
-      // console.log(defaultConfig, 'defaultConfig')
       c = Object.assign({}, defaultConfig);
     }
     return c;
