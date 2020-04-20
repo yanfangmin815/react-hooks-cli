@@ -225,26 +225,23 @@ const copyTempToLoclhost = async (target, projectName) => {
                      })
 
              }).then((data)=>{
-                let { result } = inquirer.prompt([{
+                inquirer.prompt([{
                     type: 'confirm',
                     name: 'result',
-                    message: '是否执行自动安装modules? /n',
+                    message: '是否自动安装modules?',
                     default: true
-                }]).then((answers) => {  yes回调
-                    console.log('结果为:')
-                    console.log(answers)
+                }]).then((answers) => {  // yes回调
+                    const { result } = answers
+                    if (result) {
+                        console.log(chalk.green('\n Installing project depenencies...'));
+                        exec(`cd ${resolvePath} && npm i`, function() {
+                            console.log(chalk.yellow('\n To get started: \n cd ' + projectName + '\n npm start' ));
+                        })
+                    } else {
+                        console.log('\n To get started: \n cd ' + projectName + '\n npm install' )
+                    }
                   });
-                if (result) {
-                    exec(`cd ${resolvePath} && npm i`, function() {
-                        console.log('\nTo get started:');
-                        console.log(chalk.yellow('\n cd ' + projectName));
-                        console.log(chalk.yellow('\n npm start '));
-                    })
-                } else {
-                    console.log('\nTo get started:');
-                    console.log(chalk.yellow('\n cd ' + projectName));
-                    console.log(chalk.yellow('\n npm install'));
-                }
+               
             },(err)=>{
                 console.log(err+'自己的err') //走自己的（输出：Error: 错误自己的err）
                 throw Error('错误自己抛出的')
