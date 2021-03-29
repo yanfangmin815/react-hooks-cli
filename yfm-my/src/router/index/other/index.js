@@ -1,0 +1,64 @@
+import Loadable from 'react-loadable'
+import loadable from '@/assets/utils/loadable'
+
+/**
+ * 测试主路由
+ * @param
+ * @returns {*}
+ */
+const otherMainRouters = [
+    {
+        // 其他页面-1
+        path:'/other-page',
+        component:Loadable({
+            loader:() => import('@/page/index/pages/main/page1.jsx'),
+            loading:() => ('')
+        }),
+        title: '其他页面'
+    },
+    // {
+    //     // hooks页面
+    //     path:'/other-hooks',
+    //     component:Loadable({
+    //         loader:() => import('@/page/index/pages/sub-main/hooks.jsx'),
+    //         loading:() => ('')
+    //     }),
+    //     title: 'hooks页面'
+    // },
+    {
+        // PricePanelHook页面
+        path:'/price-panel-hook',
+        component:Loadable({
+            loader:() => import('@/page/index/pages/price-panel-hook'),
+            loading:() => ('')
+        }),
+        title: 'price-panel-hook页面'
+    },
+    {
+        // 多语言测试页面
+        path:'/multi-language',
+        component:Loadable({
+            loader:() => import('@/page/index/list/sub-item/multi-language.jsx'),
+            loading:() => ('')
+        }),
+        title: '多语言测试页面'
+    },
+];
+
+/**
+ * 测试嵌套路由
+ * @param
+ * @returns {*}
+ */
+const otherSubRouters = [
+    {
+        /*// React hash 模式路由实现的手段
+        path:'/other-page',
+        component:loadable('/pages/main/page1')*/
+    }
+];
+
+export  {
+    otherMainRouters,
+    otherSubRouters
+}
